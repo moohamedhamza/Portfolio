@@ -1,493 +1,672 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="dark" data-lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Ayman Hamza | Full Stack .NET Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohamed Ayman Hamza | Full Stack .NET Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <div class="bg-grid"></div>
-    <div class="mouse-glow" id="mouseGlow"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">&lt;/Mohamed&gt;</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#plans">Plans</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+<div class="bg-grid"></div>
+<div class="mouse-glow" id="mouseGlow"></div>
+ 
+<!-- PAYMENT PAGE -->
+<div id="paymentPage">
+  <div class="pay-page-inner">
+    <button class="pay-back-btn" onclick="closePayment()">← Back to Portfolio</button>
+    <div class="pay-card">
+      <div style="font-size:3rem;margin-bottom:1rem" id="payIcon">💳</div>
+      <div class="pay-plan-name" id="payPlanName">Basic</div>
+      <div class="pay-plan-price" id="payPlanPrice">$500</div>
+      <div class="pay-plan-desc" id="payPlanDesc">Perfect for small landing pages and simple static websites</div>
+      <div class="pay-addons-summary" id="payAddonsSummary" style="display:none">
+        <h4>Selected Add-ons:</h4>
+        <div id="payAddonsLines"></div>
+        <div class="pay-total-row">
+          <span>Total</span>
+          <span id="payTotalFinal" style="color:var(--accent)">$500</span>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h1>Mohamed Ayman Hamza</h1>
-                <div class="role">Full Stack .NET Developer</div>
-                <p class="bio">
-                    Hi, I'm Mohamed — a full-stack developer who helps startups launch digital products from idea to production. I combine front-end and back-end expertise to build secure, integrated solutions, focusing on database efficiency and system integration.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#services" class="btn btn-secondary">View Services</a>
-                </div>
-            </div>
-
-            <div class="profile-image-container">
-                <div class="profile-glow"></div>
-                <div class="profile-ring"></div>
-                <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159" alt="Mohamed Ayman Hamza" class="profile-image">
-            </div>
+      </div>
+      <form class="pay-form" id="payForm">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Mohamed Ayman" required/>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="fade-up">
-        <div class="section-header">
-            <div class="section-tag">About Me</div>
-            <h2 class="section-title">Building The Future</h2>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@example.com" required/>
         </div>
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <p style="font-size: 1.15rem; line-height: 1.9; color: var(--text-secondary); margin-bottom: 2rem;">
-                Hi, I'm Mohamed — a full-stack developer who helps startups launch digital products from idea to production. I combine front-end and back-end expertise to build secure, integrated solutions, focusing on database efficiency and system integration.
-            </p>
-            <p style="font-size: 1.15rem; line-height: 1.9; color: var(--text-secondary);">
-                I build fast, reliable applications that increase user engagement — I've completed 3+ projects and gained hands-on experience delivering high-performance web applications.
-            </p>
+        <div class="form-group">
+          <label>Card Number</label>
+          <input type="text" placeholder="4242 4242 4242 4242" maxlength="19" id="cardNum"/>
         </div>
-    </section>
-
-    <!-- Education & Certificates Section -->
-    <section id="education" class="fade-up">
-        <div class="section-header">
-            <div class="section-tag">My Academic Background</div>
-            <h2 class="section-title">Education & Certificates</h2>
+        <div class="pay-row">
+          <div class="form-group">
+            <label>Expiry Date</label>
+            <input type="text" placeholder="MM/YY" maxlength="5"/>
+          </div>
+          <div class="form-group">
+            <label>CVV</label>
+            <input type="text" placeholder="123" maxlength="3"/>
+          </div>
         </div>
-        <div class="edu-cert-grid">
-            <div class="edu-card">
-                <div class="edu-icon">🎓</div>
-                <h3>College of Commerce and Business Administration</h3>
-                <div class="edu-institution">Faculty of Commerce - Helwan University</div>
-                <div class="edu-details">
-                    <strong>Specialization:</strong> Management Information Systems (MIS)<br>
-                    <strong>Grade:</strong> Excellent<br>
-                    <strong>Year:</strong> 4th Year
-                </div>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon">📜</div>
-                <h3>Certificates</h3>
-                <div class="cert-org">Coming Soon</div>
-                <div class="cert-details">
-                    Professional certifications and achievements will be added here as they are completed.
-                </div>
-            </div>
+        <button type="submit" class="pay-submit">🔒 Pay Securely</button>
+        <div class="pay-secure">🔒 256-bit SSL Encrypted &nbsp;|&nbsp; Secure Payment</div>
+      </form>
+    </div>
+  </div>
+</div>
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-container">
+    <div class="logo">&lt;/Mohamed&gt;</div>
+    <ul>
+      <li><a href="#home" data-key="nav_home">Home</a></li>
+      <li><a href="#about" data-key="nav_about">About</a></li>
+      <li><a href="#education" data-key="nav_edu">Education</a></li>
+      <li><a href="#skills" data-key="nav_skills">Skills</a></li>
+      <li><a href="#services" data-key="nav_services">Services</a></li>
+      <li><a href="#plans" data-key="nav_plans">Plans</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="theme-btn" id="themeToggle">🌙</button>
+      <div class="lang-switcher">
+        <div class="lang-track" id="langTrack">
+          <div class="lang-pill" id="langPill"></div>
+          <button class="lang-opt active" id="btnEn"><span class="lang-flag">🇺🇸</span><span>EN</span></button>
+          <button class="lang-opt" id="btnAr"><span class="lang-flag">🇪🇬</span><span>AR</span></button>
         </div>
-    </section>
-
-    <!-- Technical Skills Section -->
-    <section id="skills" class="fade-up">
-        <div class="section-header">
-            <div class="section-tag">Technical Expertise</div>
-            <h2 class="section-title">Technical Skills</h2>
-            <p class="section-desc">Technologies and tools I work with to build modern applications</p>
+      </div>
+      <a href="#contact" class="nav-contact-btn" data-key="nav_contact">Contact</a>
+    </div>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-container">
+    <div class="hero-text">
+      <h1 data-key="hero_name">Mohamed Ayman Hamza</h1>
+      <div class="role" data-key="hero_role">Full Stack .NET Developer</div>
+      <p class="bio" data-key="hero_bio">Hi, I'm Mohamed — a full-stack developer who helps startups launch digital products from idea to production. I combine front-end and back-end expertise to build secure, integrated solutions, focusing on database efficiency and system integration.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary" data-key="btn_contact">Get In Touch</a>
+        <a href="#services" class="btn btn-secondary" data-key="btn_services">View Services</a>
+      </div>
+    </div>
+    <div class="profile-image-container">
+      <div class="profile-glow"></div>
+      <div class="profile-ring"></div>
+      <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159" alt="Mohamed Ayman Hamza" class="profile-image"/>
+    </div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section id="about" class="fade-up">
+  <div class="section-header">
+    <div class="section-tag" data-key="about_tag">About Me</div>
+    <h2 class="section-title" data-key="about_title">Building The Future</h2>
+  </div>
+  <div class="about-layout">
+    <div class="about-logo">
+      M.A
+      <div class="logo-sub">Dev</div>
+    </div>
+    <div class="about-text">
+      <p data-key="about_p1">Hi, I'm Mohamed — a full-stack developer who helps startups launch digital products from idea to production. I combine front-end and back-end expertise to build secure, integrated solutions, focusing on database efficiency and system integration.</p>
+      <p data-key="about_p2">I build fast, reliable applications that increase user engagement — I've completed 3+ projects and gained hands-on experience delivering high-performance web applications.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- EDUCATION -->
+<section id="education" class="fade-up">
+  <div class="section-header">
+    <div class="section-tag" data-key="edu_tag">My Academic Background</div>
+    <h2 class="section-title" data-key="edu_title">Education &amp; Certificates</h2>
+  </div>
+  <div class="edu-cert-grid">
+    <div class="card-base edu-card">
+      <div class="edu-icon">🎓</div>
+      <h3 data-key="edu_name">College of Commerce and Business Administration</h3>
+      <div class="edu-institution" data-key="edu_uni">Faculty of Commerce - Helwan University</div>
+      <div class="edu-details">
+        <strong data-key="edu_spec_label">Specialization:</strong> <span data-key="edu_spec">Management Information Systems (MIS)</span><br/>
+        <strong data-key="edu_grade_label">Grade:</strong> <span data-key="edu_grade">Excellent</span><br/>
+        <strong data-key="edu_year_label">Year:</strong> <span data-key="edu_year">4th Year</span>
+      </div>
+    </div>
+    <div class="card-base cert-card">
+      <div class="cert-icon">📜</div>
+      <h3 data-key="cert_title">Certificates</h3>
+      <div class="cert-item">
+        <div class="cert-badge">✅</div>
+        <div>
+          <div class="cert-name" data-key="cert1_name">Full Stack .NET Development</div>
+          <div class="cert-org" data-key="cert1_org">مبادرة مصر الرقمية — Egypt Digital Initiative</div>
+          <div class="cert-details" data-key="cert1_desc">Completed a comprehensive Full Stack .NET track covering C#, ASP.NET Core, SQL Server, Entity Framework, and modern frontend technologies.</div>
         </div>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon">⚡</div>
-                <h3>Backend Development</h3>
-                <p>Building robust and scalable server-side applications</p>
-                <div class="skill-tags">
-                    <span class="tag">C# <span class="level">Advanced</span></span>
-                    <span class="tag">.NET Core <span class="level">Intermediate</span></span>
-                    <span class="tag">ASP.NET <span class="level">Intermediate</span></span>
-                    <span class="tag">Entity Framework <span class="level">Intermediate</span></span>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">💾</div>
-                <h3>Database & OOP</h3>
-                <p>Designing efficient data solutions and architectures</p>
-                <div class="skill-tags">
-                    <span class="tag">SQL Server <span class="level">Intermediate</span></span>
-                    <span class="tag">OOP <span class="level">Advanced</span></span>
-                    <span class="tag">Database Design</span>
-                    <span class="tag">Optimization</span>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🎨</div>
-                <h3>Frontend Development</h3>
-                <p>Creating beautiful and responsive user interfaces</p>
-                <div class="skill-tags">
-                    <span class="tag">HTML5 <span class="level">Advanced</span></span>
-                    <span class="tag">CSS3 <span class="level">Intermediate</span></span>
-                    <span class="tag">JavaScript <span class="level">Intermediate</span></span>
-                    <span class="tag">Responsive Design</span>
-                </div>
-            </div>
+      </div>
+      <div class="cert-item" style="margin-top:.8rem">
+        <div class="cert-badge">🛡️</div>
+        <div>
+          <div class="cert-name" data-key="cert2_name">Introduction to Cybersecurity</div>
+          <div class="cert-org" data-key="cert2_org">Cisco Networking Academy</div>
+          <div class="cert-details" data-key="cert2_desc">Completed Cisco's Introduction to Cybersecurity course covering cyber threats, network security fundamentals, and best practices for protecting digital assets.</div>
         </div>
-    </section>
-
-    <!-- Soft Skills Section -->
-    <section class="fade-up">
-        <div class="section-header">
-            <div class="section-tag">Professional Qualities</div>
-            <h2 class="section-title">Soft Skills</h2>
-            <p class="section-desc">Personal strengths that drive success</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SKILLS -->
+<section id="skills" class="fade-up">
+  <div class="section-header">
+    <div class="section-tag" data-key="skills_tag">Technical Expertise</div>
+    <h2 class="section-title" data-key="skills_title">Technical Skills</h2>
+    <p class="section-desc" data-key="skills_desc">Technologies and tools I work with to build modern applications</p>
+  </div>
+  <div class="skills-tabs">
+    <button class="skill-tab active" data-panel="backend">⚡ Backend</button>
+    <button class="skill-tab" data-panel="frontend">🎨 Frontend</button>
+    <button class="skill-tab" data-panel="fullstack">🌐 Full Stack</button>
+    <button class="skill-tab" data-panel="soft">🧠 Soft Skills</button>
+  </div>
+ 
+  <div class="skills-panel active" id="panel-backend">
+    <div class="skill-card-new"><div class="skill-logo blue">C#</div><div class="skill-info"><h4>C#</h4><p>Advanced OOP, LINQ, async/await patterns</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:88%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo blue">.N</div><div class="skill-info"><h4>.NET Core</h4><p>Building scalable web APIs and services</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:75%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo green">EF</div><div class="skill-info"><h4>Entity Framework</h4><p>ORM, migrations, code-first approach</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:72%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo blue">SQL</div><div class="skill-info"><h4>SQL Server</h4><p>Database design, queries, optimization</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:78%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo orange">API</div><div class="skill-info"><h4>ASP.NET Web API</h4><p>RESTful API design, authentication, JWT</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:74%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo purple">OOP</div><div class="skill-info"><h4>OOP Principles</h4><p>SOLID, Design Patterns, Clean Architecture</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:85%"></div></div></div></div>
+  </div>
+ 
+  <div class="skills-panel" id="panel-frontend">
+    <div class="skill-card-new"><div class="skill-logo orange">H5</div><div class="skill-info"><h4>HTML5</h4><p>Semantic markup, accessibility, SEO-friendly structure</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:90%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo blue">CSS</div><div class="skill-info"><h4>CSS3</h4><p>Flexbox, Grid, animations, responsive design</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:80%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo yellow">JS</div><div class="skill-info"><h4>JavaScript</h4><p>DOM manipulation, async, ES6+ features</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:72%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo green">RD</div><div class="skill-info"><h4>Responsive Design</h4><p>Mobile-first, cross-browser compatibility</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:85%"></div></div></div></div>
+  </div>
+ 
+  <div class="skills-panel" id="panel-fullstack">
+    <div class="skill-card-new"><div class="skill-logo blue">FS</div><div class="skill-info"><h4>Full Stack Development</h4><p>End-to-end web application development</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:78%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo orange">DB</div><div class="skill-info"><h4>Database Design</h4><p>ER diagrams, normalization, indexing strategies</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:80%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo green">AU</div><div class="skill-info"><h4>Authentication & Security</h4><p>JWT, OAuth, role-based access control</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:70%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo purple">GI</div><div class="skill-info"><h4>Git & Version Control</h4><p>GitHub, branching strategies, collaboration</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:75%"></div></div></div></div>
+    <div class="skill-card-new"><div class="skill-logo red">🛡️</div><div class="skill-info"><h4>Cybersecurity Basics</h4><p>Network security fundamentals (Cisco Certified)</p><div class="skill-level-bar"><div class="skill-level-fill" style="width:60%"></div></div></div></div>
+  </div>
+ 
+  <div class="skills-panel" id="panel-soft">
+    <div class="soft-grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+      <div class="soft-card"><div class="s-icon">🧩</div><h4 data-key="soft1">Problem-Solving</h4></div>
+      <div class="soft-card"><div class="s-icon">🤝</div><h4 data-key="soft2">Teamwork</h4></div>
+      <div class="soft-card"><div class="s-icon">💬</div><h4 data-key="soft3">Communication</h4></div>
+      <div class="soft-card"><div class="s-icon">⏱️</div><h4 data-key="soft4">Time Management</h4></div>
+      <div class="soft-card"><div class="s-icon">🔍</div><h4 data-key="soft5">Attention to Detail</h4></div>
+      <div class="soft-card"><div class="s-icon">🚀</div><h4 data-key="soft6">Quick Learner</h4></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SERVICES -->
+<section id="services" class="fade-up">
+  <div class="section-header">
+    <div class="section-tag" data-key="srv_tag">What I Offer</div>
+    <h2 class="section-title" data-key="srv_title">Services</h2>
+    <p class="section-desc" data-key="srv_desc">Click any service to learn more</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card" onclick="openModal('s1')"><div class="service-icon">🌐</div><h3>Full-Stack Web Applications</h3><p>Building complete web applications with modern frontend and robust backend architecture</p><div class="service-tags"><span class="s-tag">ASP.NET</span><span class="s-tag">SQL Server</span><span class="s-tag">REST API</span></div></div>
+    <div class="service-card" onclick="openModal('s2')"><div class="service-icon">🎨</div><h3>Interactive Frontend Development</h3><p>Creating modern, responsive user interfaces with smooth interactions</p><div class="service-tags"><span class="s-tag">HTML5</span><span class="s-tag">CSS3</span><span class="s-tag">JavaScript</span></div></div>
+    <div class="service-card" onclick="openModal('s3')"><div class="service-icon">⚙️</div><h3>Backend &amp; API Development</h3><p>Scalable RESTful APIs with clean architecture and best practices</p><div class="service-tags"><span class="s-tag">C#</span><span class="s-tag">.NET Core</span><span class="s-tag">JWT</span></div></div>
+    <div class="service-card" onclick="openModal('s4')"><div class="service-icon">💾</div><h3>Database Design &amp; Optimization</h3><p>Efficient database schemas and performance tuning for data management</p><div class="service-tags"><span class="s-tag">SQL Server</span><span class="s-tag">EF Core</span><span class="s-tag">Indexing</span></div></div>
+    <div class="service-card" onclick="openModal('s5')"><div class="service-icon">🔧</div><h3>Maintenance &amp; System Updates</h3><p>Ongoing support to keep applications running smoothly</p><div class="service-tags"><span class="s-tag">Bug Fixes</span><span class="s-tag">Performance</span><span class="s-tag">Updates</span></div></div>
+    <div class="service-card" onclick="openModal('s6')"><div class="service-icon">💡</div><h3>Technical Consulting for Startups</h3><p>Strategic guidance on technology decisions and roadmap planning</p><div class="service-tags"><span class="s-tag">MVP</span><span class="s-tag">Architecture</span><span class="s-tag">Roadmap</span></div></div>
+  </div>
+</section>
+ 
+<!-- SERVICE MODAL -->
+<div class="modal-overlay" id="serviceModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon" id="modalIcon"></div>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDesc"></p>
+    <ul class="modal-list" id="modalList"></ul>
+  </div>
+</div>
+ 
+<!-- PLANS BUTTON SECTION -->
+<section id="plans" class="fade-up">
+  <div class="section-header">
+    <div class="section-tag" data-key="plans_tag">Investment</div>
+    <h2 class="section-title" data-key="plans_title">Service Packages &amp; Pricing</h2>
+    <p class="section-desc" data-key="plans_desc">Flexible packages for every project — from simple websites to full enterprise solutions</p>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-top:2rem">
+    <button onclick="openPlansPage()" style="
+      padding:1.1rem 3rem;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#080c10;border:none;border-radius:12px;
+      font-family:inherit;font-size:1.05rem;font-weight:800;
+      cursor:pointer;transition:all .3s;
+      box-shadow:0 10px 35px rgba(0,212,255,.4);
+      display:flex;align-items:center;gap:.7rem;letter-spacing:.5px;
+    " onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 15px 45px rgba(0,212,255,.55)'"
+       onmouseout="this.style.transform='';this.style.boxShadow='0 10px 35px rgba(0,212,255,.4)'">
+      📦 View All Plans &amp; Pricing
+    </button>
+    <p style="color:var(--text-muted);font-size:.85rem">+ Hourly add-on services available • $5/hr</p>
+  </div>
+</section>
+ 
+<!-- PLANS FULL PAGE -->
+<div id="plansPage" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:2500;overflow-y:auto;">
+  <div style="max-width:1300px;margin:0 auto;padding:2rem 2rem 4rem;">
+    <!-- Back btn -->
+    <button onclick="closePlansPage()" style="display:flex;align-items:center;gap:.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:.6rem 1.2rem;color:var(--text-secondary);font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .3s;margin-bottom:2.5rem;"
+      onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
+      onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">
+      ← Back to Portfolio
+    </button>
+    <div style="text-align:center;margin-bottom:3rem">
+      <div style="color:var(--accent);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:.8rem">Investment</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:.8rem">Service Packages &amp; Pricing</h2>
+      <p style="color:var(--text-secondary);font-size:1rem">Choose the perfect plan — add hourly services below to customize your package</p>
+    </div>
+ 
+    <!-- PRICING CARDS -->
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="plan-badge">STARTER</div>
+        <div class="plan-icon">⚡</div>
+        <h3 class="plan-name">Basic</h3>
+        <div class="plan-price"><span class="currency">$</span><span class="amount">500</span><span class="period">/ project</span></div>
+        <p class="plan-desc">Perfect for small landing pages and simple static websites</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span><span>Up to 5 Pages</span></li>
+          <li><span class="check">✓</span><span>Responsive Design</span></li>
+          <li><span class="check">✓</span><span>Contact Form</span></li>
+          <li><span class="check">✓</span><span>Basic SEO Setup</span></li>
+          <li><span class="check">✓</span><span>2 Weeks Delivery</span></li>
+        </ul>
+        <a href="#contact" onclick="closePlansPage()" class="plan-btn"><span>Get Started</span></a>
+        <button class="pay-btn" onclick="openPayment('Basic','500','Perfect for small landing pages and simple static websites','⚡')">💳 Pay Now</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="plan-badge popular">MOST POPULAR</div>
+        <div class="plan-icon">⚖️</div>
+        <h3 class="plan-name">Balance</h3>
+        <div class="plan-price"><span class="currency">$</span><span class="amount">1500</span><span class="period">/ project</span></div>
+        <p class="plan-desc">Ideal for business websites with CMS and user management</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span><span>Up to 15 Pages</span></li>
+          <li><span class="check">✓</span><span>Responsive Design</span></li>
+          <li><span class="check">✓</span><span>Contact Form</span></li>
+          <li><span class="check">✓</span><span>Advanced SEO</span></li>
+          <li><span class="check">✓</span><span>Database Integration</span></li>
+          <li><span class="check">✓</span><span>User Authentication</span></li>
+          <li><span class="check">✓</span><span>API Development</span></li>
+          <li><span class="check">✓</span><span>4 Weeks Delivery</span></li>
+        </ul>
+        <a href="#contact" onclick="closePlansPage()" class="plan-btn featured-btn"><span>Get Started</span></a>
+        <button class="pay-btn" onclick="openPayment('Balance','1500','Ideal for business websites with CMS and user management','⚖️')">💳 Pay Now</button>
+      </div>
+      <div class="pricing-card">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="plan-badge pro">BEST VALUE</div>
+        <div class="plan-icon">🚀</div>
+        <h3 class="plan-name">PRO</h3>
+        <div class="plan-price"><span class="currency">$</span><span class="amount">3500</span><span class="period">/ project</span></div>
+        <p class="plan-desc">Full-stack web application with dashboard and payment integration</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span><span>Unlimited Pages</span></li>
+          <li><span class="check">✓</span><span>Responsive Design</span></li>
+          <li><span class="check">✓</span><span>Advanced SEO</span></li>
+          <li><span class="check">✓</span><span>Database Integration</span></li>
+          <li><span class="check">✓</span><span>User Authentication</span></li>
+          <li><span class="check">✓</span><span>RESTful API Development</span></li>
+          <li><span class="check">✓</span><span>Admin Dashboard</span></li>
+          <li><span class="check">✓</span><span>Payment Gateway (Stripe)</span></li>
+          <li><span class="check">✓</span><span>6-8 Weeks Delivery</span></li>
+        </ul>
+        <a href="#contact" onclick="closePlansPage()" class="plan-btn"><span>Get Started</span></a>
+        <button class="pay-btn" onclick="openPayment('PRO','3500','Full-stack web app with dashboard and payment integration','🚀')">💳 Pay Now</button>
+      </div>
+      <div class="pricing-card">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="plan-badge custom">ENTERPRISE</div>
+        <div class="plan-icon">🎯</div>
+        <h3 class="plan-name">Custom</h3>
+        <div class="plan-price"><span class="amount-custom">Let's Talk</span></div>
+        <p class="plan-desc">Tailored solutions for complex enterprise needs with unique requirements</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span><span>Everything in PRO</span></li>
+          <li><span class="check">✓</span><span>Custom Architecture</span></li>
+          <li><span class="check">✓</span><span>Microservices / DDD</span></li>
+          <li><span class="check">✓</span><span>Redis Caching</span></li>
+          <li><span class="check">✓</span><span>Cloud Deployment</span></li>
+          <li><span class="check">✓</span><span>Priority Support</span></li>
+          <li><span class="check">✓</span><span>Dedicated Maintenance</span></li>
+        </ul>
+        <a href="#contact" onclick="closePlansPage()" class="plan-btn"><span>Contact Me</span></a>
+      </div>
+    </div>
+ 
+    <!-- HOURLY ADD-ONS -->
+    <div class="hourly-section" style="margin-top:3rem">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.5rem">
+        <div style="font-size:2rem">⏱️</div>
+        <div>
+          <div class="hourly-title">Hourly Add-on Services</div>
+          <div class="hourly-desc">Enhance any package with extra services — each billed at <strong style="color:var(--accent)">$5 / hour</strong></div>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; text-align: center; max-width: 900px; margin: 0 auto;">
-            <div style="padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); transition: all 0.3s;" class="skill-hover">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧩</div>
-                <h4 style="color: var(--text); font-weight: 600;">Problem-Solving</h4>
-            </div>
-            <div style="padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); transition: all 0.3s;" class="skill-hover">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤝</div>
-                <h4 style="color: var(--text); font-weight: 600;">Teamwork & Collaboration</h4>
-            </div>
-            <div style="padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); transition: all 0.3s;" class="skill-hover">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
-                <h4 style="color: var(--text); font-weight: 600;">Communication</h4>
-            </div>
-            <div style="padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); transition: all 0.3s;" class="skill-hover">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">⏱️</div>
-                <h4 style="color: var(--text); font-weight: 600;">Time Management</h4>
-            </div>
-            <div style="padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); transition: all 0.3s;" class="skill-hover">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔍</div>
-                <h4 style="color: var(--text); font-weight: 600;">Attention to Detail</h4>
-            </div>
-            <div style="padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); transition: all 0.3s;" class="skill-hover">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
-                <h4 style="color: var(--text); font-weight: 600;">Quick Learner & Adaptability</h4>
-            </div>
+      </div>
+      <div class="addons-grid">
+        <div class="addon-item"><div class="addon-header"><span class="addon-name">🖥️ Extra Pages</span><span class="addon-price">$5/hr</span></div><div class="addon-desc">Additional pages beyond your plan limit</div><div class="addon-hours"><label>Hours:</label><input type="number" min="0" value="0" onchange="calcTotal()" id="h-extra-pages"/></div></div>
+        <div class="addon-item"><div class="addon-header"><span class="addon-name">🔍 SEO Optimization</span><span class="addon-price">$5/hr</span></div><div class="addon-desc">Advanced on-page SEO and keyword research</div><div class="addon-hours"><label>Hours:</label><input type="number" min="0" value="0" onchange="calcTotal()" id="h-seo"/></div></div>
+        <div class="addon-item"><div class="addon-header"><span class="addon-name">⚡ Performance Boost</span><span class="addon-price">$5/hr</span></div><div class="addon-desc">Speed optimization, caching, and code cleanup</div><div class="addon-hours"><label>Hours:</label><input type="number" min="0" value="0" onchange="calcTotal()" id="h-speed"/></div></div>
+        <div class="addon-item"><div class="addon-header"><span class="addon-name">🎨 UI/UX Design</span><span class="addon-price">$5/hr</span></div><div class="addon-desc">Custom design work, icons, and visual elements</div><div class="addon-hours"><label>Hours:</label><input type="number" min="0" value="0" onchange="calcTotal()" id="h-design"/></div></div>
+        <div class="addon-item"><div class="addon-header"><span class="addon-name">🔧 Extra Support</span><span class="addon-price">$5/hr</span></div><div class="addon-desc">Post-launch support and maintenance hours</div><div class="addon-hours"><label>Hours:</label><input type="number" min="0" value="0" onchange="calcTotal()" id="h-support"/></div></div>
+        <div class="addon-item"><div class="addon-header"><span class="addon-name">🔗 API Integration</span><span class="addon-price">$5/hr</span></div><div class="addon-desc">Third-party API integration and testing</div><div class="addon-hours"><label>Hours:</label><input type="number" min="0" value="0" onchange="calcTotal()" id="h-api"/></div></div>
+      </div>
+      <div class="calc-summary">
+        <div class="calc-title">💰 Price Calculator</div>
+        <div class="calc-plan-selector">
+          <label>Select Base Package:</label>
+          <select id="basePlanSelect" onchange="calcTotal()">
+            <option value="" disabled selected>— Select a package —</option>
+            <option value="500">Basic — $500</option>
+            <option value="1500">Balance — $1,500</option>
+            <option value="3500">PRO — $3,500</option>
+            <option value="0">Custom — Let's Talk</option>
+          </select>
         </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="fade-up">
-        <div class="section-header">
-            <div class="section-tag">What I Offer</div>
-            <h2 class="section-title">Services</h2>
-            <p class="section-desc">Comprehensive development solutions tailored to your business needs</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🌐</div>
-                <h3>Full-Stack Web Applications</h3>
-                <p>Building complete web applications with modern frontend and robust backend architecture</p>
-                <ul class="service-list">
-                    <li>Responsive UI development</li>
-                    <li>RESTful API design</li>
-                    <li>Database integration</li>
-                    <li>Authentication & authorization</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>Interactive Frontend Development</h3>
-                <p>Creating modern, responsive user interfaces with smooth interactions</p>
-                <ul class="service-list">
-                    <li>Responsive design</li>
-                    <li>Component libraries</li>
-                    <li>Cross-browser compatibility</li>
-                    <li>Performance optimization</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⚙️</div>
-                <h3>Backend & API Development</h3>
-                <p>Scalable RESTful APIs with clean architecture and best practices</p>
-                <ul class="service-list">
-                    <li>RESTful API development</li>
-                    <li>Authentication systems</li>
-                    <li>Unit testing</li>
-                    <li>API documentation</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💾</div>
-                <h3>Database Design & Optimization</h3>
-                <p>Efficient database schemas and performance tuning for data management</p>
-                <ul class="service-list">
-                    <li>ER diagram creation</li>
-                    <li>Schema design & scripts</li>
-                    <li>Query optimization</li>
-                    <li>Indexing strategies</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>Maintenance & System Updates</h3>
-                <p>Ongoing support to keep applications running smoothly</p>
-                <ul class="service-list">
-                    <li>Bug fixes & debugging</li>
-                    <li>Performance improvements</li>
-                    <li>Feature enhancements</li>
-                    <li>Performance reports</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💡</div>
-                <h3>Technical Consulting for Startups</h3>
-                <p>Strategic guidance on technology decisions and roadmap planning</p>
-                <ul class="service-list">
-                    <li>Technical roadmap</li>
-                    <li>MVP planning</li>
-                    <li>Architecture recommendations</li>
-                    <li>Technology stack selection</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-   <!-- Pricing Plans Section -->
-    <section id="plans" class="fade-up">
-        <div class="section-header">
-            <div class="section-tag">Investment</div>
-            <h2 class="section-title">Service Packages & Pricing</h2>
-            <p class="section-desc">Choose the perfect plan for your project needs with flexible options</p>
-        </div>
-        <div class="pricing-grid">
-            <!-- Basic Plan -->
-            <div class="pricing-card">
-                <div class="plan-badge">STARTER</div>
-                <div class="plan-icon">⚡</div>
-                <h3 class="plan-name">Basic</h3>
-                <div class="plan-price">
-                    <span class="currency">$</span>
-                    <span class="amount">500</span>
-                    <span class="period">/ project</span>
-                </div>
-                <p class="plan-desc">Perfect for small landing pages and simple static websites</p>
-                <ul class="plan-features">
-                    <li><span class="check">✓</span> Up to 5 Pages</li>
-                    <li><span class="check">✓</span> Responsive Design</li>
-                    <li><span class="check">✓</span> Contact Form</li>
-                    <li><span class="check">✓</span> Basic SEO Setup</li>
-                    <li><span class="check">✓</span> 2 Weeks Delivery</li>
-                </ul>
-                <a href="#contact" class="plan-btn">Get Started</a>
-            </div>
-
-            <!-- Standard Plan -->
-            <div class="pricing-card featured">
-                <div class="plan-badge popular">MOST POPULAR</div>
-                <div class="plan-icon">⚖️</div>
-                <h3 class="plan-name">Balance</h3>
-                <div class="plan-price">
-                    <span class="currency">$</span>
-                    <span class="amount">1,500</span>
-                    <span class="period">/ project</span>
-                </div>
-                <p class="plan-desc">Ideal for business websites with CMS and user management</p>
-                <ul class="plan-features">
-                    <li><span class="check">✓</span> Up to 15 Pages</li>
-                    <li><span class="check">✓</span> Responsive Design</li>
-                    <li><span class="check">✓</span> Contact Form</li>
-                    <li><span class="check">✓</span> Advanced SEO</li>
-                    <li><span class="check">✓</span> Database Integration</li>
-                    <li><span class="check">✓</span> User Authentication</li>
-                    <li><span class="check">✓</span> API Development</li>
-                    <li><span class="check">✓</span> 4 Weeks Delivery</li>
-                </ul>
-                <a href="#contact" class="plan-btn featured-btn">Get Started</a>
-            </div>
-
-            <!-- Pro Plan -->
-            <div class="pricing-card">
-                <div class="plan-badge pro">BEST VALUE</div>
-                <div class="plan-icon">⚡</div>
-                <h3 class="plan-name">PRO</h3>
-                <div class="plan-price">
-                    <span class="currency">$</span>
-                    <span class="amount">3,500</span>
-                    <span class="period">/ project</span>
-                </div>
-                <p class="plan-desc">Full-stack web application with dashboard and payment integration</p>
-                <ul class="plan-features">
-                    <li><span class="check">✓</span> Unlimited Pages</li>
-                    <li><span class="check">✓</span> Responsive Design</li>
-                    <li><span class="check">✓</span> Contact Form</li>
-                    <li><span class="check">✓</span> Advanced SEO</li>
-                    <li><span class="check">✓</span> Database Integration</li>
-                    <li><span class="check">✓</span> User Authentication</li>
-                    <li><span class="check">✓</span> RESTful API Development</li>
-                    <li><span class="check">✓</span> Admin Dashboard</li>
-                    <li><span class="check">✓</span> Payment Gateway (Stripe)</li>
-                    <li><span class="check">✓</span> 6-8 Weeks Delivery</li>
-                </ul>
-                <a href="#contact" class="plan-btn">Get Started</a>
-            </div>
-
-            <!-- Custom Plan -->
-            <div class="pricing-card">
-                <div class="plan-badge custom">ENTERPRISE</div>
-                <div class="plan-icon">🎯</div>
-                <h3 class="plan-name">Custom</h3>
-                <div class="plan-price">
-                    <span class="amount-custom">Let's Talk</span>
-                </div>
-                <p class="plan-desc">Tailored solutions for complex enterprise needs with unique requirements</p>
-                <ul class="plan-features">
-                    <li><span class="check">✓</span> Everything in PRO</li>
-                    <li><span class="check">✓</span> Custom Architecture</li>
-                    <li><span class="check">✓</span> Microservices / DDD</li>
-                    <li><span class="check">✓</span> Redis Caching</li>
-                    <li><span class="check">✓</span> Cloud Deployment</li>
-                    <li><span class="check">✓</span> Priority Support</li>
-                    <li><span class="check">✓</span> Dedicated Maintenance</li>
-                </ul>
-                <a href="#contact" class="plan-btn">Contact Me</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="fade-up">
-        <div class="contact-container">
-            <div class="section-header" style="margin-bottom: 3rem;">
-                <div class="section-tag">Get In Touch</div>
-                <h2 class="section-title">Let's Work Together</h2>
-                <p class="section-desc">Have a project or idea? Let's turn it into reality!</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <span class="icon">📧</span>
-                        <a href="mailto:mohamedaymanhamza123@gmail"target="_blank" style="color: var(--text-secondary); text-decoration: none;">Gmail</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">💻</span>
-                        <a href="https://github.com/moohamedhamza" target="_blank" style="color: var(--text-secondary); text-decoration: none;">GitHub</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">💼</span>
-                        <a href="https://www.linkedin.com/in/mohamed-ayman-hamza-a75753364" target="_blank" style="color: var(--text-secondary); text-decoration: none;">LinkedIn</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">📍</span>
-                        <span>Cairo, Egypt</span>
-                    </div>
-                </div>
-
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message ✈️</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Mohamed Ayman Hamza. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">Built with passion & code ⚡</p>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">↑</button>
-
-    <script>
-        // Mouse glow effect
-        const mouseGlow = document.getElementById('mouseGlow');
-        document.addEventListener('mousemove', (e) => {
-            mouseGlow.style.left = e.clientX + 'px';
-            mouseGlow.style.top = e.clientY + 'px';
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll reveal animation
-        const fadeElements = document.querySelectorAll('.fade-up');
-        const checkScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('show');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', checkScroll);
-        checkScroll();
-
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Soft skill hover effects
-        document.querySelectorAll('.skill-hover').forEach(skill => {
-            skill.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.borderColor = 'var(--accent)';
-                this.style.background = 'var(--accent-dim)';
-            });
-            skill.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.borderColor = 'var(--border)';
-                this.style.background = 'var(--bg-card)';
-            });
-        });
-
-        // Contact form submission (placeholder)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! This is a demo form. Please use the email or LinkedIn for actual contact.');
-        });
-    </script>
+        <div class="calc-base"><span>Base Package</span><span id="calcBaseLine">—</span></div>
+        <div class="calc-addon-line" id="line-extra-pages" style="display:none"><span>🖥️ Extra Pages</span><span id="val-extra-pages">$0</span></div>
+        <div class="calc-addon-line" id="line-seo" style="display:none"><span>🔍 SEO Optimization</span><span id="val-seo">$0</span></div>
+        <div class="calc-addon-line" id="line-speed" style="display:none"><span>⚡ Performance Boost</span><span id="val-speed">$0</span></div>
+        <div class="calc-addon-line" id="line-design" style="display:none"><span>🎨 UI/UX Design</span><span id="val-design">$0</span></div>
+        <div class="calc-addon-line" id="line-support" style="display:none"><span>🔧 Extra Support</span><span id="val-support">$0</span></div>
+        <div class="calc-addon-line" id="line-api" style="display:none"><span>🔗 API Integration</span><span id="val-api">$0</span></div>
+        <div class="calc-total"><span>Total</span><span class="calc-total-price" id="calcTotal">$0</span></div>
+        <button class="calc-cta" onclick="openPaymentFromCalc()">💳 Proceed to Payment</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- CONTACT -->
+<section id="contact" class="fade-up">
+  <div class="contact-container">
+    <div class="section-header" style="margin-bottom:3rem">
+      <div class="section-tag" data-key="contact_tag">Get In Touch</div>
+      <h2 class="section-title" data-key="contact_title">Let's Work Together</h2>
+      <p class="section-desc" data-key="contact_desc">Have a project or idea? Let's turn it into reality!</p>
+    </div>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3 data-key="contact_info_title">Contact Information</h3>
+        <a class="contact-item" href="mailto:mohamedaymanhamza123@gmail.com"><span class="icon">📧</span><span>mohamedaymanhamza123&#64;gmail.com</span></a>
+        <a class="contact-item" href="tel:+201024975855"><span class="icon">📞</span><span>01024975855</span></a>
+        <a class="contact-item" href="https://wa.me/201024975855" target="_blank"><span class="icon">💬</span><span>WhatsApp — 01024975855</span></a>
+        <a class="contact-item" href="https://github.com/moohamedhamza" target="_blank"><span class="icon">💻</span><span>GitHub</span></a>
+        <a class="contact-item" href="https://www.linkedin.com/in/mohamed-ayman-hamza-a75753364" target="_blank"><span class="icon">💼</span><span>LinkedIn</span></a>
+        <div class="contact-item"><span class="icon">📍</span><span data-key="location">Cairo, Egypt</span></div>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group"><label data-key="form_name">Your Name</label><input type="text" id="fname" required/></div>
+        <div class="form-group"><label data-key="form_email">Your Email</label><input type="email" id="femail" required/></div>
+        <div class="form-group"><label data-key="form_subject">Subject</label><input type="text" id="fsubject" required/></div>
+        <div class="form-group"><label data-key="form_message">Your Message</label><textarea id="fmessage" required></textarea></div>
+        <div class="form-msg" id="formMsg"></div>
+        <button type="submit" class="submit-btn" id="submitBtn" data-key="form_submit">Send Message ✈️</button>
+      </form>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">&lt;/Mohamed&gt;</div>
+      <p>Full Stack .NET Developer focused on building scalable, secure web applications with clean, maintainable code.</p>
+      <div class="footer-socials">
+        <a class="footer-social" href="https://github.com/moohamedhamza" target="_blank">💻</a>
+        <a class="footer-social" href="https://www.linkedin.com/in/mohamed-ayman-hamza-a75753364" target="_blank">💼</a>
+        <a class="footer-social" href="mailto:mohamedaymanhamza123@gmail.com">📧</a>
+        <a class="footer-social" href="https://wa.me/201024975855" target="_blank">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#plans">Plans</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item"><span class="f-icon">📧</span><span>mohamedaymanhamza123&#64;gmail.com</span></div>
+      <div class="footer-contact-item"><span class="f-icon">📞</span><span>+20 1024975855</span></div>
+      <div class="footer-contact-item"><span class="f-icon">📍</span><span>Cairo, Egypt</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Mohamed Ayman Hamza. All rights reserved. &nbsp;|&nbsp; Built with passion &amp; code ⚡</p>
+  </div>
+</footer>
+ 
+<button class="back-to-top" id="backToTop">↑</button>
+ 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// EMAILJS
+const EMAILJS_SERVICE_ID  = 'service_y5kjzv4';
+const EMAILJS_TEMPLATE_ID = 'template_3ha9lus';
+const EMAILJS_PUBLIC_KEY  = 'muBGxrbCW7_5jn89T';
+emailjs.init(EMAILJS_PUBLIC_KEY);
+ 
+// SERVICE MODALS DATA
+const services = {
+  s1:{icon:'🌐',title:'Full-Stack Web Applications',desc:'Building complete web applications with modern frontend and robust backend architecture, from database to UI.',list:['Responsive UI development','RESTful API design','Database integration','Authentication & authorization','Deployment & hosting setup']},
+  s2:{icon:'🎨',title:'Interactive Frontend Development',desc:'Creating modern, responsive user interfaces with smooth interactions and great user experience.',list:['Responsive design (mobile-first)','Component-based structure','CSS animations & transitions','Cross-browser compatibility','Performance optimization']},
+  s3:{icon:'⚙️',title:'Backend & API Development',desc:'Scalable RESTful APIs with clean architecture, proper documentation, and security best practices.',list:['RESTful API development','JWT authentication','Role-based authorization','Unit & integration testing','Swagger API documentation']},
+  s4:{icon:'💾',title:'Database Design & Optimization',desc:'Efficient database schemas, performance tuning, and data management strategies for any scale.',list:['ER diagram creation','Schema design & scripts','Complex query writing','Index & performance tuning','Data migration support']},
+  s5:{icon:'🔧',title:'Maintenance & System Updates',desc:'Ongoing support and improvements to keep your application running smoothly and up to date.',list:['Bug fixes & debugging','Performance monitoring','Security patches','Feature enhancements','Monthly performance reports']},
+  s6:{icon:'💡',title:'Technical Consulting for Startups',desc:'Strategic guidance on technology stack, architecture, and development roadmap for startups and small businesses.',list:['Technical roadmap planning','MVP scope definition','Architecture recommendations','Technology stack selection','Code review & best practices']}
+};
+function openModal(id){
+  const s=services[id];
+  document.getElementById('modalIcon').textContent=s.icon;
+  document.getElementById('modalTitle').textContent=s.title;
+  document.getElementById('modalDesc').textContent=s.desc;
+  document.getElementById('modalList').innerHTML=s.list.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('serviceModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('serviceModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+ 
+// SKILLS TABS
+document.querySelectorAll('.skill-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.skill-tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.skills-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.panel).classList.add('active');
+  });
+});
+ 
+// CALC
+const addons=[
+  {id:'extra-pages',label:'🖥️ Extra Pages'},
+  {id:'seo',label:'🔍 SEO Optimization'},
+  {id:'speed',label:'⚡ Performance Boost'},
+  {id:'design',label:'🎨 UI/UX Design'},
+  {id:'support',label:'🔧 Extra Support'},
+  {id:'api',label:'🔗 API Integration'}
+];
+function calcTotal(){
+  const base=parseInt(document.getElementById('basePlanSelect').value)||0;
+  const baseText = base ? '$'+base.toLocaleString() : '—';
+  document.getElementById('calcBaseLine').textContent=base?'$'+base.toLocaleString():'—';
+  let addonsTotal=0;
+  addons.forEach(a=>{
+    const hrs=parseInt(document.getElementById('h-'+a.id).value)||0;
+    const val=hrs*5;
+    addonsTotal+=val;
+    const line=document.getElementById('line-'+a.id);
+    const valEl=document.getElementById('val-'+a.id);
+    if(hrs>0){line.style.display='flex';line.classList.add('active');valEl.textContent='$'+val;}
+    else{line.style.display='none';}
+  });
+  const total=base+addonsTotal;
+  document.getElementById('calcTotal').textContent=total?'$'+total.toLocaleString():'$0';
+}
+ 
+// PLANS PAGE
+function openPlansPage(){
+  document.getElementById('plansPage').style.display='block';
+  document.getElementById('plansPage').scrollTop=0;
+  document.body.style.overflow='hidden';
+  // re-trigger count-up inside plans page
+  document.querySelectorAll('#plansPage .amount').forEach(el=>{
+    const target=parseInt(el.getAttribute('data-target')||el.textContent.replace(/,/g,''));
+    if(!el.getAttribute('data-target')) el.setAttribute('data-target',el.textContent.replace(/,/g,''));
+    el.textContent='0';
+    let start=0;const inc=target/62;
+    const timer=setInterval(()=>{start+=inc;if(start>=target){clearInterval(timer);el.textContent=target.toLocaleString();}else{el.textContent=Math.floor(start).toLocaleString();}},16);
+  });
+}
+function closePlansPage(){
+  document.getElementById('plansPage').style.display='none';
+  document.body.style.overflow='';
+}
+let currentPayPlan={name:'',price:0,desc:'',icon:''};
+function openPayment(name,price,desc,icon){
+  currentPayPlan={name,price:parseInt(price),desc,icon};
+  document.getElementById('payPlanName').textContent=name;
+  document.getElementById('payPlanPrice').textContent='$'+parseInt(price).toLocaleString();
+  document.getElementById('payPlanDesc').textContent=desc;
+  document.getElementById('payIcon').textContent=icon;
+  document.getElementById('payAddonsSummary').style.display='none';
+  document.getElementById('paymentPage').classList.add('open');
+  window.scrollTo(0,0);
+}
+function openPaymentFromCalc(){
+  const base=parseInt(document.getElementById('basePlanSelect').value)||0;
+  const sel=document.getElementById('basePlanSelect');
+  const name=sel.options[sel.selectedIndex].text.split('—')[0].trim();
+  let lines='';let addonsTotal=0;
+  addons.forEach(a=>{
+    const hrs=parseInt(document.getElementById('h-'+a.id).value)||0;
+    if(hrs>0){const val=hrs*5;addonsTotal+=val;lines+=`<div class="pay-addon-row"><span>${a.label} (${hrs}h)</span><span>$${val}</span></div>`;}
+  });
+  const total=base+addonsTotal;
+  document.getElementById('payPlanName').textContent=name;
+  document.getElementById('payPlanPrice').textContent='$'+total.toLocaleString();
+  document.getElementById('payPlanDesc').textContent='Package + selected add-on services';
+  document.getElementById('payIcon').textContent='💰';
+  const summary=document.getElementById('payAddonsSummary');
+  if(addonsTotal>0){
+    document.getElementById('payAddonsLines').innerHTML=`<div class="pay-addon-row"><span>Base: ${name}</span><span>$${base.toLocaleString()}</span></div>`+lines;
+    document.getElementById('payTotalFinal').textContent='$'+total.toLocaleString();
+    summary.style.display='block';
+  }else{summary.style.display='none';}
+  document.getElementById('paymentPage').classList.add('open');
+  window.scrollTo(0,0);
+}
+function closePayment(){
+  document.getElementById('paymentPage').classList.remove('open');
+}
+document.getElementById('cardNum').addEventListener('input',function(){
+  this.value=this.value.replace(/\D/g,'').replace(/(.{4})/g,'$1 ').trim().slice(0,19);
+});
+document.getElementById('payForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  alert('✅ Payment request received! Mohamed will contact you within 24 hours to confirm and process the payment securely.');
+  closePayment();
+});
+ 
+// LANG
+const T={
+  en:{nav_home:'Home',nav_about:'About',nav_edu:'Education',nav_skills:'Skills',nav_services:'Services',nav_plans:'Plans',nav_contact:'Contact',hero_name:'Mohamed Ayman Hamza',hero_role:'Full Stack .NET Developer',hero_bio:"Hi, I'm Mohamed — a full-stack developer who helps startups launch digital products from idea to production. I combine front-end and back-end expertise to build secure, integrated solutions, focusing on database efficiency and system integration.",btn_contact:'Get In Touch',btn_services:'View Services',about_tag:'About Me',about_title:'Building The Future',about_p1:"Hi, I'm Mohamed — a full-stack developer who helps startups launch digital products from idea to production. I combine front-end and back-end expertise to build secure, integrated solutions.",about_p2:"I build fast, reliable applications that increase user engagement — I've completed 3+ projects delivering high-performance web applications.",edu_tag:'My Academic Background',edu_title:'Education & Certificates',edu_name:'College of Commerce and Business Administration',edu_uni:'Faculty of Commerce - Helwan University',edu_spec_label:'Specialization:',edu_spec:'Management Information Systems (MIS)',edu_grade_label:'Grade:',edu_grade:'Excellent',edu_year_label:'Year:',edu_year:'4th Year',cert_title:'Certificates',cert1_name:'Full Stack .NET Development',cert1_org:'مبادرة مصر الرقمية — Egypt Digital Initiative',cert1_desc:'Completed a comprehensive Full Stack .NET track covering C#, ASP.NET Core, SQL Server, Entity Framework, and modern frontend technologies.',cert2_name:'Introduction to Cybersecurity',cert2_org:'Cisco Networking Academy',cert2_desc:"Completed Cisco's Introduction to Cybersecurity course covering cyber threats, network security fundamentals, and best practices for protecting digital assets.",skills_tag:'Technical Expertise',skills_title:'Technical Skills',skills_desc:'Click a tab to explore my skills',soft1:'Problem-Solving',soft2:'Teamwork',soft3:'Communication',soft4:'Time Management',soft5:'Attention to Detail',soft6:'Quick Learner',srv_tag:'What I Offer',srv_title:'Services',srv_desc:'Click any service to learn more',plans_tag:'Investment',plans_title:'Service Packages & Pricing',plans_desc:'Choose the perfect plan for your project needs',contact_tag:'Get In Touch',contact_title:"Let's Work Together",contact_desc:"Have a project or idea? Let's turn it into reality!",contact_info_title:'Contact Information',location:'Cairo, Egypt',form_name:'Your Name',form_email:'Your Email',form_subject:'Subject',form_message:'Your Message',form_submit:'Send Message ✈️',form_sending:'Sending…',form_success:'✅ Message sent! I will get back to you soon.',form_error:'❌ Failed. Please contact me directly.'},
+  ar:{nav_home:'الرئيسية',nav_about:'عني',nav_edu:'التعليم',nav_skills:'المهارات',nav_services:'الخدمات',nav_plans:'الباقات',nav_contact:'تواصل',hero_name:'محمد أيمن حمزة',hero_role:'مطور Full Stack .NET',hero_bio:'مرحباً، أنا محمد — مطور متكامل يساعد الشركات الناشئة على إطلاق منتجاتها الرقمية من الفكرة حتى الإنتاج.',btn_contact:'تواصل معي',btn_services:'عرض الخدمات',about_tag:'عني',about_title:'بناء المستقبل',about_p1:'مرحباً، أنا محمد — مطور متكامل يساعد الشركات الناشئة على إطلاق منتجاتها الرقمية. أجمع بين خبرة الواجهة الأمامية والخلفية.',about_p2:'أبني تطبيقات سريعة وموثوقة — أنجزت أكثر من 3 مشاريع واكتسبت خبرة عملية.',edu_tag:'خلفيتي الأكاديمية',edu_title:'التعليم والشهادات',edu_name:'كلية التجارة وإدارة الأعمال',edu_uni:'كلية التجارة - جامعة حلوان',edu_spec_label:'التخصص:',edu_spec:'نظم المعلومات الإدارية (MIS)',edu_grade_label:'التقدير:',edu_grade:'ممتاز',edu_year_label:'السنة:',edu_year:'السنة الرابعة',cert_title:'الشهادات',cert1_name:'تطوير Full Stack .NET',cert1_org:'مبادرة مصر الرقمية',cert1_desc:'أتممت مسار تطوير Full Stack .NET الشامل.',cert2_name:'مقدمة في الأمن السيبراني',cert2_org:'أكاديمية Cisco للشبكات',cert2_desc:'أتممت كورس Cisco في أساسيات الأمن السيبراني وحماية الأصول الرقمية.',skills_tag:'الخبرة التقنية',skills_title:'المهارات التقنية',skills_desc:'اضغط على تبويب لاستكشاف مهاراتي',soft1:'حل المشكلات',soft2:'العمل الجماعي',soft3:'التواصل',soft4:'إدارة الوقت',soft5:'الانتباه للتفاصيل',soft6:'التعلم السريع',srv_tag:'ما أقدمه',srv_title:'الخدمات',srv_desc:'اضغط على أي خدمة لمعرفة المزيد',plans_tag:'الاستثمار',plans_title:'باقات الخدمات والأسعار',plans_desc:'اختر الباقة المثالية لمشروعك',contact_tag:'تواصل معي',contact_title:'لنعمل معاً',contact_desc:'عندك مشروع أو فكرة؟ لنحولها إلى واقع!',contact_info_title:'معلومات التواصل',location:'القاهرة، مصر',form_name:'اسمك',form_email:'بريدك الإلكتروني',form_subject:'الموضوع',form_message:'رسالتك',form_submit:'إرسال الرسالة ✈️',form_sending:'جاري الإرسال…',form_success:'✅ تم الإرسال بنجاح!',form_error:'❌ فشل الإرسال. تواصل معي مباشرةً.'}
+};
+let lang='en';
+function applyLang(l){
+  lang=l;const t=T[l];
+  document.querySelectorAll('[data-key]').forEach(el=>{const k=el.getAttribute('data-key');if(t[k]!==undefined)el.textContent=t[k];});
+  document.documentElement.setAttribute('data-lang',l);document.documentElement.lang=l;
+  const pill=document.getElementById('langPill');
+  if(l==='ar'){pill.classList.add('ar');document.getElementById('btnEn').classList.remove('active');document.getElementById('btnAr').classList.add('active');}
+  else{pill.classList.remove('ar');document.getElementById('btnEn').classList.add('active');document.getElementById('btnAr').classList.remove('active');}
+  const track=document.getElementById('langTrack');track.classList.add('switching');setTimeout(()=>track.classList.remove('switching'),600);
+}
+document.getElementById('btnEn').addEventListener('click',()=>{if(lang!=='en')applyLang('en');});
+document.getElementById('btnAr').addEventListener('click',()=>{if(lang!=='ar')applyLang('ar');});
+ 
+// THEME
+let dark=true;
+document.getElementById('themeToggle').addEventListener('click',()=>{dark=!dark;document.documentElement.setAttribute('data-theme',dark?'dark':'light');document.getElementById('themeToggle').textContent=dark?'🌙':'☀️';});
+ 
+// MOUSE GLOW
+const glow=document.getElementById('mouseGlow');
+document.addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
+ 
+// SCROLL
+const fades=document.querySelectorAll('.fade-up');
+const reveal=()=>fades.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-80)el.classList.add('show');});
+window.addEventListener('scroll',reveal);reveal();
+const btt=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>btt.classList.toggle('show',scrollY>300));
+btt.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+ 
+// COUNT-UP
+let counted=false;
+function countUp(){
+  if(counted)return;
+  const s=document.getElementById('plans');
+  if(s&&s.getBoundingClientRect().top<window.innerHeight-60){
+    counted=true;
+    document.querySelectorAll('.pricing-card .amount').forEach(el=>{
+      const target=parseInt(el.textContent.replace(/,/g,''));
+      if(isNaN(target))return;
+      let start=0;const inc=target/62;
+      const timer=setInterval(()=>{start+=inc;if(start>=target){clearInterval(timer);el.textContent=target.toLocaleString();}else{el.textContent=Math.floor(start).toLocaleString();}},16);
+    });
+  }
+}
+window.addEventListener('scroll',countUp);countUp();
+ 
+// CONTACT FORM
+document.getElementById('contactForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const t=T[lang];const btn=document.getElementById('submitBtn');const msg=document.getElementById('formMsg');
+  btn.disabled=true;btn.textContent=t.form_sending;msg.className='form-msg';msg.style.display='none';
+  try{
+    await emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,{from_name:document.getElementById('fname').value,from_email:document.getElementById('femail').value,subject:document.getElementById('fsubject').value,message:document.getElementById('fmessage').value,to_email:'mohamedaymanhamza123@gmail.com'});
+    msg.textContent=t.form_success;msg.className='form-msg success';this.reset();
+  }catch(err){msg.textContent=t.form_error;msg.className='form-msg error';}
+  finally{btn.disabled=false;btn.textContent=t.form_submit;}
+});
+</script>
 </body>
 </html>
